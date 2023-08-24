@@ -26,15 +26,15 @@ var mincostTickets = function (days, costs) {
             // console.log(' ---- ')
             // console.log((costs[0] + Math.max(0, minCost[day - 1])) + ' - [day - 1]) - ' + (costs[1] + Math.max(0, minCost[day - 7])) + ' - [day - 7]) - ')
 
-            minCost[day] = Math.min(
-                costs[0] + Math.max(0, minCost[day - 1]),
-                (day >= 7 ? costs[1] + Math.max(0, minCost[day - 7]) : Infinity),
-                (day >= 30 ? costs[2] + Math.max(0, minCost[day - 30]) : Infinity)
+            // minCost[day] = Math.min(
+            //     costs[0] + Math.max(0, minCost[day - 1]),
+            //     (day >= 7 ? costs[1] + Math.max(0, minCost[day - 7]) : Infinity),
+            //     (day >= 30 ? costs[2] + Math.max(0, minCost[day - 30]) : Infinity)
 
-                // minCost[day] = Math.min(
-                //     minCost[Math.max(0, day - 1)] + costs[0],
-                //     minCost[Math.max(0, day - 7)] + costs[1],
-                //     minCost[Math.max(0, day - 30)] + costs[2]
+            minCost[day] = Math.min(
+                minCost[Math.max(0, day - 1)] + costs[0],
+                minCost[Math.max(0, day - 7)] + costs[1],
+                minCost[Math.max(0, day - 30)] + costs[2]
 
 
             );
