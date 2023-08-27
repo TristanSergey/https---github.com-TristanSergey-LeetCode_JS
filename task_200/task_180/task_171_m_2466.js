@@ -11,11 +11,26 @@
 
 low = 2, high = 3, zero = 1, one = 2
 
-low = 3, high = 3, zero = 1, one = 1
-
+low = 3, high = 3, zero = 1, one = 1;
 
 var countGoodStrings = function (low, high, zero, one) {
 
+    const dp = Array.from({ length: high + 1 }).fill(0);
+    const MOD = 1000 * 1000 * 1000 + 7;
+    dp[0] = 1;
+
+    for (let n = 1; n <= high; ++n) {
+        if (n >= one) dp[n] += dp[n - one];
+        if (n >= zero) dp[n] += dp[n - zero];
+        dp[n] %= MOD;
+    }
+
+    let result = 0;
+    for (let i = low; i <= high; ++i) {
+        result += dp[i];
+        result %= MOD;
+    }
+    return result;
 };
 
 console.log(countGoodStrings(low, high, zero, one))

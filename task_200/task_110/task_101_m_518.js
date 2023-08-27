@@ -6,7 +6,7 @@
 // 518
 
 amount = 5;
-coins = [1, 2, 5];
+coins = [1, 2, 3];
 
 function change(amount, coins) {
 
