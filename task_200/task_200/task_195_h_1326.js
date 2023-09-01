@@ -12,6 +12,7 @@
 //n = 6, ranges = [3, 4, 1, 1, 0, 0, 2]
 n = 35, ranges = [1, 0, 4, 0, 4, 1, 4, 3, 1, 1, 1, 2, 1, 4, 0, 3, 0, 3, 0, 3, 0, 5, 3, 0, 0, 1, 2, 1, 2, 4, 3, 0, 1, 0, 5, 2]
 n = 11, ranges = [2, 1, 2, 1, 2, 4, 3, 0, 1, 0, 5, 2]
+n = 97, ranges = [1, 5, 3, 1, 4, 5, 5, 1, 2, 0, 2, 2, 4, 3, 0, 0, 1, 4, 5, 5, 0, 3, 5, 1, 1, 0, 0, 0, 4, 1, 1, 1, 0, 4, 4, 1, 0, 0, 2, 5, 5, 4, 4, 4, 2, 4, 3, 4, 4, 2, 3, 4, 0, 2, 0, 1, 0, 4, 2, 3, 0, 0, 0, 1, 5, 2, 0, 2, 4, 4, 3, 3, 0, 0, 3, 1, 1, 1, 4, 2, 5, 2, 3, 1, 0, 1, 0, 2, 4, 3, 4, 0, 2, 4, 1, 1, 2, 5]
 var minTaps = function (n, ranges) {
     const dp = new Array(n + 1).fill(Infinity);
     dp[0] = 0;
@@ -20,9 +21,9 @@ var minTaps = function (n, ranges) {
         const ahead = Math.max(0, i - ranges[i]);
         const end = Math.min(n, i + ranges[i])
         for (let j = ahead + 1; j <= end; j++) {
-            console.log(i + ' - i - ' + ranges[i] + ' - ranges[i] - ' + j + ' - j - ' + ranges[j] + ' -  ranges[j] -')
+            //  console.log(i + ' - i - ' + ranges[i] + ' - ranges[i] - ' + j + ' - j - ' + ranges[j] + ' -  ranges[j] -')
             dp[j] = Math.min(dp[j], dp[ahead] + 1);
-            console.log(dp)
+            //  console.log(dp)
         }
     }
 
