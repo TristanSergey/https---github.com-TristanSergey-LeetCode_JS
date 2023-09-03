@@ -9,46 +9,32 @@
 
 s = "3[a]2[bc]" //"aaabcbc"
 s = "11[a2[cd]]"  //"accaccacc"
-s = "2[abc]3[cd]ef" //"abcabccdcdcdef"
-s = '3';
+//s = "2[abc]3[cd]ef" //"abcabccdcdcdef"
+//s = '3a';
 
 var decodeString = function (s) {
-    let answer = '';
-    const queueNumber = [];
-    const queueChar = [];
-    let pointer = 0;
+    const stack = [];
+    let nums = 0;
+    let letters = '';
 
-    while (pointer < s.length) {
-        let letters = '';
-        while (s[pointer] >= 'a' && s[pointer] <= 'z') {
-            letters += s[pointer];
-            pointer++
+    for (let char of s) {
+        if (char >= '0' && char <= '9') {
+            nums = nums * 10 + parseInt(char); // Обрабатываем многозначные числа
+        } else if (char === '[') {
+            stack.push(letters);
+            stack.push(nums);
+            letters = '';
+            nums = 0;
+        } else if (char === ']') {
+            const num = stack.pop();
+            const prevStr = stack.pop();
+            letters = prevStr + letters.repeat(num);
+        } else {
+            letters += char;
         }
-        if (letters.length > 0) queueChar.push(letters)
-        letters = '';
-        while (s[pointer] >= '0' && s[pointer] <= '9') {
-            letters += s[pointer];
-
-            pointer++
-        }
-        if (letters.length > 0) queueNumber.push(letters)
-        pointer++;
     }
 
-    while (queueChar.length > 0 && queueNumber.length > 0) {
-        const num = queueNumber.pop();
-        const char = queueChar.pop()
-        console.log(num + ' - num - ' + char + ' - char - ')
-        let quantity = 1;
-        while (quantity <= num) {
-            answer = char + answer;
-            quantity++;
-        }
-        console.log(queueChar)
-        console.log(queueNumber)
-        console.log(answer)
-    }
-    return answer;
+    return letters;
 
 };
 
