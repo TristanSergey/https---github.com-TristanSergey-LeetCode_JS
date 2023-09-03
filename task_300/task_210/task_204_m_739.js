@@ -16,6 +16,8 @@ var dailyTemperatures = function (temperatures) {
             result[prevItem] = i - prevItem;
         }
         stack.push(i);
+
+
         console.log(stack)
         console.log(result)
     }
