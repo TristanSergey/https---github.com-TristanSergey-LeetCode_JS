@@ -5,18 +5,20 @@
 // F(n) = F(n - 1) + F(n - 2), для n > 1.
 // Учитывая n, вычислить F(n).
 // 509
+
+
 n = 4;
 n = 14521;
 //n = 1;
 function nthFibonacci(n) {
-    // const mod = BigInt(1000000007);
-    // if (n == 0) return 0n;
-    // if (n == 1) return 1n;
-    // let sum = [0n, 1n]
-    // for (let i = 2; i < n; i++) {
-    //     sum[i] = (sum[i - 1] + sum[i - 2]) % mod;
-    // }
-    // return Number((sum[n - 1] + sum[n - 2]) % mod);
+    const mod = BigInt(1000000007);
+    if (n == 0) return 0n;
+    if (n == 1) return 1n;
+    let sum = [0n, 1n]
+    for (let i = 2; i < n; i++) {
+        sum[i] = (sum[i - 1] + sum[i - 2]) % mod;
+    }
+    return Number((sum[n - 1] + sum[n - 2]) % mod);
 
 
 }
