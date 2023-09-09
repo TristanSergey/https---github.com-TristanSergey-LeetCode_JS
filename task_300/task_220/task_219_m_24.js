@@ -19,27 +19,21 @@ let head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new L
 // head = null; 
 
 var swapPairs = function (head) {
-
     if (!head || !head.next) return head;
-
     let previousNode = null;
     let currentNode = head;
-
     while (currentNode && currentNode.next) {
         const temp = currentNode.next;
         currentNode.next = temp.next;
         temp.next = currentNode;
-
         if (previousNode) {
             previousNode.next = temp;
         } else {
             head = temp;
         }
-
         previousNode = currentNode;
         currentNode = currentNode.next;
     }
-
     return head;
 };
 
