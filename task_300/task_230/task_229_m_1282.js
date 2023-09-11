@@ -10,7 +10,20 @@
 groupSizes = [3, 3, 3, 3, 3, 1, 3]
 
 var groupThePeople = function (groupSizes) {
-
+    const answer = [];
+    const sizeGroup = {};
+    for (let i = 0; i < groupSizes.length; i++) {
+        const size = groupSizes[i];
+        if (!sizeGroup[size]) {
+            sizeGroup[size] = [];
+        }
+        sizeGroup[size].push(i);
+        if (sizeGroup[size].length === size) {
+            answer.push(sizeGroup[size]);
+            sizeGroup[size] = [];
+        }
+    }
+    return answer;
 };
 
 console.log((groupThePeople(groupSizes)))
