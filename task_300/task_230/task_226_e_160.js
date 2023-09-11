@@ -16,15 +16,15 @@ let headA = new ListNode(4, new ListNode(1, new ListNode(8, new ListNode(4, new 
 let headB = new ListNode(5, new ListNode(6, new ListNode(1, new ListNode(8, new ListNode(4, new ListNode(5, null))))));
 
 var getIntersectionNode = function (headA, headB) {
-    //boundary check
+
     if (headA == null || headB == null) return null;
 
     let nodeA = headA;
     let nodeB = headB;
 
-    //if nodeA & nodeB have different len, then we will stop the loop after second iteration
+
     while (nodeA != nodeB) {
-        //for the end of first iteration, we just reset the pointer to the head of another linkedlist
+
         nodeA = nodeA == null ? headB : nodeA.next;
         nodeB = nodeB == null ? headA : nodeB.next;
     }
