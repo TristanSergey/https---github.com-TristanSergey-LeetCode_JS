@@ -54,7 +54,7 @@ var invertTree = function (root) {
     }
 
     return invert(root, root)
-    console.log(root)
+
 };
 
 console.log(invertTree(root))
