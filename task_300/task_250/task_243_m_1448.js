@@ -27,21 +27,22 @@ node1.right = node4;
 
 
 
-root = [3, 1, 4, 3, null, 1, 5]
+//root = [3, 1, 4, 3, null, 1, 5]
 
 
 var goodNodes = function (root) {
     let count = 0;
-    function dfs(root, max) {
-        if (root == null)
+    function goodNode(node, max) {
+        if (node == null)
             return;
-        if (root.val >= max) {
-            max = root.val;
+        if (node.val >= max) {
+            max = node.val;
             count++;
         }
-        dfs(root.left, max);
-        dfs(root.right, max);
+        goodNode(node.left, max);
+        goodNode(node.right, max);
     }
-    dfs(root, root.val);
+    goodNode(root, root.val);
     return count;
 };
+console.log(goodNodes(root))
