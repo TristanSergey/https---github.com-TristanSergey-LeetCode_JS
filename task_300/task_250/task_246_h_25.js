@@ -20,30 +20,31 @@ let head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new L
 k = 3;
 
 var reverseKGroup = function (head, k) {
-
-    if (!head || !head.next) return head;
-    let previousGroupNode = null;
-    let currentNode = head;
-
-    //while (currentNode && currentNode.next) {
-    while (currentNode !== null) {
-        let count = 1;
-        let previousNode = null;
-        while (count <= k) {
-            //console.log(currentNode.next)
-            const temp = currentNode.next;
-            //console.log(temp)
-            currentNode.next = previousNode;
-            previousNode = currentNode;
-            currentNode = temp;
-            count++
+    function reversed(head, k) {
+        let prevNode = null;
+        let currentNode = head;
+        let count = 0;
+        while (currentNode !== null && count < k) {
+            currentNode = currentNode.next;
+            count++;
         }
-        const tempGroup = previousNode;
-        previousGroupNode = previousNode;
-        //console.log(previousGroupNode)
-    }
-    return previousGroupNode;
+        if (count === k) {
+            currentNode = head;
+            count = 0;
 
+            while (count < k) {
+                const nextNode = currentNode.next;
+                currentNode.next = prevNode;
+                prevNode = currentNode;
+                currentNode = nextNode;
+                count++;
+            }
+            head.next = reverseKGroup(currentNode, k);
+            return prevNode;
+        }
+        return head;
+    }
+    return reversed(head, k);
 };
 
 console.log(reverseKGroup(head, k))
