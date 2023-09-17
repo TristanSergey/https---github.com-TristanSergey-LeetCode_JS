@@ -30,6 +30,16 @@ Trie.prototype.search = function (word) {
 
 Trie.prototype.startsWith = function (prefix) {
 
+    const arr = prefix.join('');
+
+    for (let i = 0; i < prefix.length; i++) {
+
+
+
+    }
+}
+
+
 };
 
 var obj = new Trie()
