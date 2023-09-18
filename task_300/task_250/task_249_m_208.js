@@ -10,39 +10,66 @@
 // префиксом - префиксом, и false в противном случае.
 // 208
 
+const util = require('util');
+util.inspect.defaultOptions.depth = null;
 
+var TrieNode = function () {
+    this.next = new Map();
+    this.isEnd = false;
+};
 
 var Trie = function () {
-    this.hash = new Set();
+    this.root = new TrieNode();
 };
 
 Trie.prototype.insert = function (word) {
-    this.hash.add(word);
+    let current = this.root;
+
+    for (const char of word) {
+        if (!current.next.has(char)) {
+            // Если нет узла для текущей буквы, создаем новый узел.
+            current.next.set(char, new TrieNode());
+        }
+
+        // Переходим к следующему узлу.
+        current = current.next.get(char);
+    }
+
+    // Устанавливаем флаг конца слова для последнего узла.
+    current.isEnd = true;
+
 };
 
 Trie.prototype.search = function (word) {
-    if (this.hash.has(word)) {
-        return true;
-    } else {
-        return false;
+    let current = this.root;
+    for (const char of word) {
+        if (!current.next.has(char)) {
+            return false;
+        }
+        current = current.next.get(char);
     }
+    return current.isEnd;
 };
 
 Trie.prototype.startsWith = function (prefix) {
 
-    const arr = prefix.join('');
-
-    for (let i = 0; i < prefix.length; i++) {
-
-
-
+    let current = this.root;
+    for (const char of prefix) {
+        if (!current.next.has(char)) {
+            return false;
+        }
+        current = current.next.get(char);
     }
-}
 
+    return true;
 
 };
-
+word = 'apply'
+prefix = 'ap'
 var obj = new Trie()
 obj.insert(word)
+word = 'apply'
 var param_2 = obj.search(word)
 var param_3 = obj.startsWith(prefix)
+//console.log(obj)
+console.log(param_3)
