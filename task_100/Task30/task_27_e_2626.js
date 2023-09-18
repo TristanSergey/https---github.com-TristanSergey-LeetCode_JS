@@ -1,11 +1,8 @@
-﻿// Given an integer array nums, a reducer function fn, 
-// and an initial value init, return a reduced array.
-// A reduced array is created by applying the 
-// following operation: val = fn(init, nums[0]), 
-// val = fn(val, nums[1]), val = fn(val, nums[2]), 
-// ... until every element in the array has been processed.The final value of val is returned.
-// If the length of the array is 0, it should return init.
-// Please solve it without using the built -in Array.reduce method.
+﻿// Учитывая целочисленный массив nums, функцию редуктора fn и начальное значение init, верните уменьшенный массив.
+// Уменьшенный массив создается применением следующей операции: val = fn(init, nums[0]), val = fn(val, nums[1]), 
+// val = fn(val, nums[2]), ... до тех пор, пока каждый элемент массива не будет обработан.Возвращается окончательное значение val.
+// Если длина массива равна 0, он должен вернуть init.
+// Пожалуйста, решите эту проблему, не используя встроенный метод Array.reduce.
 
 //2626
 

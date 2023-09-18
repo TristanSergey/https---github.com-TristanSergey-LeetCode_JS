@@ -1,10 +1,6 @@
-﻿// Write a function that checks if a given value is an 
-// instance of a given class or superclass.
-// For this problem, an object is considered an instance 
-// of a given class if that object has access to that class's methods.
-// There are no constraints on the data types that can be 
-// passed to the function. For example, the value or the 
-// class could be undefined.
+﻿// Напишите функцию, которая проверяет, является ли данное значение экземпляром данного класса или суперкласса.
+// В этой проблеме объект считается экземпляром данного класса, если этот объект имеет доступ к методам этого класса.
+// Нет никаких ограничений на типы данных, которые могут быть переданы в функцию.Например, значение или класс могут быть неопределенными.
 //2618
 
 function checkIfInstanceOf(obj, classFunction) {
