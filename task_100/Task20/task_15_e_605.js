@@ -11,6 +11,7 @@
 //let flowerbed = [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0];
 //let flowerbed = [1, 0, 0, 0, 0, 0, 1];
 let flowerbed = [0];
+flowerbed = [0, 1, 0];
 let n = 1;
 //let flowerbed = [1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0];
 //let flowerbed = [0, 0, 1, 0, 0, 0, 0, 1];

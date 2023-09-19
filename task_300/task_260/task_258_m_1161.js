@@ -34,36 +34,84 @@ node2.right = node5;
 
 
 var maxLevelSum = function (root) {
-    function traverse(node, level, result) {
-        if (!node) return;
 
-        if (!result[level]) {
-            result[level] = [];
-        }
 
-        result[level].push(node.val);
-
-        traverse(node.left, level + 1, result);
-        traverse(node.right, level + 1, result);
-
-    }
-
-    const result = [];
-    traverse(root, 0, result);
+    if (!root) return 0; // Проверка на пустое дерево
 
     let maxSum = -Infinity;
-    let index = -1;
+    let maxLevel = 0;
+    let currentLevel = 0;
+    let queue = [root];
 
-    for (let i = 0; i < result.length; i++) {
-        const currentLevelSum = result[i].reduce((acc, item) => acc + item, 0);
+    while (queue.length > 0) {
+        currentLevel++;
+        let levelSum = 0;
+        let levelSize = queue.length;
 
-        if (currentLevelSum > maxSum) {
-            maxSum = currentLevelSum;
-            index = i + 1;
+        for (let i = 0; i < levelSize; i++) {
+            let node = queue.shift();
+            levelSum += node.val;
+
+            if (node.left) queue.push(node.left);
+            if (node.right) queue.push(node.right);
+        }
+
+        if (levelSum > maxSum) {
+            maxSum = levelSum;
+            maxLevel = currentLevel - 1; // Используем индексацию с 0
         }
     }
-    return index;
+
+    return maxLevel;
+
 
 };
 
 console.log(maxLevelSum(root))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//function traverse(node, level) {
+//     if (!node) return;
+
+//     if (!result[level]) {
+//         result[level] = [];
+//     }
+
+//     result[level].push(node.val);
+
+//     traverse(node.left, level + 1);
+//     traverse(node.right, level + 1);
+
+// }
+
+// const result = [];
+// traverse(root, 0);
+
+// let maxSum = -Infinity;
+// let index = -1;
+
+// for (let i = 1; i < result.length; i++) {
+//     const currentLevelSum = result[i].reduce((acc, item) => acc + item, 0);
+
+//     if (currentLevelSum > maxSum)  {
+//         maxSum = currentLevelSum;
+//         index = i;
+//     }
+// }
+// return index;

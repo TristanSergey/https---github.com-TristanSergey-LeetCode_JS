@@ -72,24 +72,67 @@ function findDuplicate(nums) {
     //     }
     // }
 
-    let slow = 0;
-    let fast = 0;
 
-    while (true) {
+    let slow = nums[0]; // Черепаха
+    let fast = nums[0];     // Заяц
+
+    // Первый этап: Поиск точки встречи черепахи и зайца
+    do {
         slow = nums[slow];
         fast = nums[nums[fast]];
-        if (slow === fast) {
-            break;
-        }
+    } while (slow !== fast);
+
+    // Второй этап: Начинаем движение зайца с начала, пока не встретим черепаху
+    let ptr1 = nums[0]; // Первый указатель
+    let ptr2 = slow; // Второй указатель
+
+    while (ptr1 !== ptr2) {
+        ptr1 = nums[ptr1];
+        ptr2 = nums[ptr2];
     }
-    fast = 0;
-    while (true) {
-        slow = nums[slow];
-        fast = nums[fast];
-        if (slow === fast) {
-            return slow;
-        }
-    }
+
+    // Теперь ptr1 указывает на начало цикла, которое и является повторяющимся числом
+    return ptr1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // let slow = 0;
+    // let fast = 0;
+
+    // while (true) {
+    //     slow = nums[slow];
+    //     fast = nums[nums[fast]];
+    //     if (slow === fast) {
+    //         console.log(slow)
+    //         break;
+    //     }
+    // }
+    // fast = 0;
+    // while (true) {
+    //     slow = nums[slow];
+    //     fast = nums[fast];
+    //     if (slow === fast) {
+    //         return slow;
+    //     }
+    // }
 }
 
 console.log(findDuplicate(nums));
