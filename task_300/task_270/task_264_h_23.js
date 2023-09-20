@@ -5,6 +5,9 @@
 // 23
 
 
+//const { MinHeap } = require('datastructures-js');
+const { MinPriorityQueue } = require('datastructures-js');
+
 const util = require('util');
 util.inspect.defaultOptions.depth = null;
 function ListNode(val, next) {
@@ -16,26 +19,68 @@ let list2 = new ListNode(1, new ListNode(3, new ListNode(4, null)));
 
 var mergeKLists = function (lists) {
 
-    let answer = null;
 
-    function mergedLists(list1, list2) {
+    const queue = new MinPriorityQueue({ priority: x => x.val })
 
-        if (!list1) return list2;
-        if (!list2) return list1;
-
-        if (list1.val < list2.val) {
-            list1.next = mergedLists(list1.next, list2);
-            return list1;
-        } else {
-            list2.next = mergedLists(list1, list2.next);
-            return list2;
+    for (const head of lists) {
+        if (head) {
+            queue.enqueue(head)
         }
-
     }
 
-    for (let i = 0; i < lists.length; i++) answer = mergedLists(answer, lists[i])
-    return answer;
+    let answer = new ListNode()
+    const head = answer
+
+    while (!queue.isEmpty()) {
+        const { val, next } = queue.dequeue().element
+
+        answer.next = new ListNode(val)
+        answer = answer.next
+
+        if (next) {
+            queue.enqueue(next)
+        }
+    }
+
+    return head.next
 
 };
 
 console.log(mergeKLists(list1, list2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let answer = null;
+
+// function mergedLists(list1, list2) {
+
+//     if (!list1) return list2;
+//     if (!list2) return list1;
+
+//     if (list1.val < list2.val) {
+//         list1.next = mergedLists(list1.next, list2);
+//         return list1;
+//     } else {
+//         list2.next = mergedLists(list1, list2.next);
+//         return list2;
+//     }
+
+// }
+
+// for (let i = 0; i < lists.length; i++) answer = mergedLists(answer, lists[i])
+// return answer;
