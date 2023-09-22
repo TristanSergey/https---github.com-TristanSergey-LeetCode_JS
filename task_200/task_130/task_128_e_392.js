@@ -13,25 +13,38 @@ text2 = "ace";
 s = "";
 t = ""
 //s = "axc";
-s = "abc";
-//t = "ahbgdc"
+s = "axc";
+t = "ahbgdc"
+//s = "";
+//t = ""
 
+s = "leeeeetcode";
+//t = "yyyyylyyyyyyyyyyeyyyyyyyyyyyyyyyyeyyyyyyyyyyyyyyyyyyyyyeyyyyyyeyyyyyyyyyyeyyyyyyyyyyyyyyeyyyyyyyyyyyyyyyyyyyytyyyyyyyyyyyyyyyyyyyyyyyycyyyyyyyyyyyyyyyoyyyyyyyyyyyyyyydyyyyyyyyyyyyyyyyyyyeyyyyyyy";
+t = "yylyyyeyyyyeyyyyyeyyeyyyyyeyyyeyyyytyyyycyyyoyyydyyeyy";
+// s = "acb";
+// t = "ahbgdc";
 function isSubsequence(s, t) {
-    const tLength = t.length;
-    const sLength = s.length;
-    if (sLength === 0) return true;
-    let sPoint = 0;
-    //const dp = Array.from({ length: sLength }).fill(false);
-    //console.log(dp)
-    for (let i = 0; i < tLength; i++) {
-        if (sPoint < sLength && t[i] === s[sPoint]) {
-            sPoint++;
-        }
-        if (sPoint === sLength) return true;
-    }
+    const dp = Array.from({ length: s.length + 1 }).fill(false);
+    dp[0] = true;
+    let point = 0;
+    for (let i = 0; i < s.length; i++) {
+        console.log(i + ' - i -')
+        console.log('----------------------')
 
-    //console.log(dp)
-    return false;
+        for (let j = point; j < t.length; j++) {
+            console.log(i + ' - i- ' + s[i] + ' - s[i] -' + j + ' - j- ' + t[j] + ' - t[j] -')
+            if (s[i] === t[j]) {
+                dp[i + 1] = dp[i] && true;
+                point = j + 1;
+                i++;
+            }
+            console.log(dp)
+        }
+
+        console.log('----------------------')
+    }
+    return dp[s.length]
+
 };
 
 
@@ -41,6 +54,21 @@ console.log(isSubsequence(s, t))
 
 
 
+// const tLength = t.length;
+// const sLength = s.length;
+// if (sLength === 0) return true;
+// let sPoint = 0;
+// //const dp = Array.from({ length: sLength }).fill(false);
+// //console.log(dp)
+// for (let i = 0; i < tLength; i++) {
+//     if (sPoint < sLength && t[i] === s[sPoint]) {
+//         sPoint++;
+//     }
+//     if (sPoint === sLength) return true;
+// }
+
+// //console.log(dp)
+// return false;
 
 
 
@@ -55,6 +83,33 @@ console.log(isSubsequence(s, t))
 
 
 
+
+
+
+// if (t === '' && s === '') return true;
+// if (t === '') return false;
+
+// let sPoint = 0;
+// let tPoint = 0;
+// while (sPoint < s.length) {
+//     console.log('+++++++++++++++++++++++++++++')
+//     console.log('t[tPoint] - ' + t[tPoint] + ' - ' + tPoint + ' - s[sPoint] - ' + s[sPoint] + ' - ' + sPoint)
+//     if (tPoint === t.length) return false;
+//     while (tPoint < t.length) {
+//         console.log('-------------------------------------')
+//         console.log('t[tPoint] - ' + t[tPoint] + ' - ' + tPoint + ' - s[sPoint] - ' + s[sPoint] + ' - ' + sPoint)
+//         if (t[tPoint] === s[sPoint]) {
+//             tPoint++;
+//             sPoint++;
+//             break;
+//         } else {
+//             tPoint++;
+//         }
+//         if (tPoint === t.length) return false;
+//     }
+
+// }
+// return true;
 
 
 
