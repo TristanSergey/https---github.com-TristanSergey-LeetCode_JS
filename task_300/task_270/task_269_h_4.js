@@ -12,48 +12,39 @@ nums2 = [2, 3, 5, 6, 7, 11, 14, 18, 21, 25];
 
 
 var findMedianSortedArrays = function (nums1, nums2) {
-    const combined = [];
 
+    if (nums1.length > nums2.length) {
+        [nums1, nums2] = [nums2, nums1];
+    }
 
-    let i = 0;
-    let j = 0;
+    const m = nums1.length;
+    const n = nums2.length;
+    let low = 0;
+    let high = m;
 
+    while (low <= high) {
+        const partX = (low + high) >> 1;
+        const partY = ((m + n + 1) >> 1) - partX;
 
+        const maxX = (partX === 0) ? -Infinity : nums1[partX - 1];
+        const maxY = (partY === 0) ? -Infinity : nums2[partY - 1];
 
-    while (i < nums1.length && j < nums2.length) {
-        if (nums1[i] < nums2[j]) {
-            combined.push(nums1[i]);
-            i++;
+        const minX = (partX === m) ? Infinity : nums1[partX];
+        const minY = (partY === n) ? Infinity : nums2[partY];
+
+        if (maxX <= minY && maxY <= minX) {
+            if ((m + n) % 2 === 0) {
+                return (Math.max(maxX, maxY) + Math.min(minX, minY)) / 2;
+            } else {
+                return Math.max(maxX, maxY);
+            }
+        } else if (maxX > minY) {
+            high = partX - 1;
         } else {
-            combined.push(nums2[j]);
-            j++;
+            low = partX + 1;
         }
     }
 
-    while (i < nums1.length) {
-        combined.push(nums1[i]);
-        i++;
-    }
-    while (j < nums2.length) {
-        combined.push(nums2[j]);
-        j++;
-    }
-
-    console.log(i + ' - i')
-    console.log(j + ' - j')
-    console.log(combined)
-
-
-    var length = combined.length;
-    // Если массив имеет четное количество элементов, найдем среднее арифметическое двух центральных элементов
-    if (length % 2 === 0) {
-        var mid1 = combined[length / 2 - 1];
-        var mid2 = combined[length / 2];
-        return (mid1 + mid2) / 2;
-    } else {
-        // Если массив имеет нечетное количество элементов, медианой будет центральный элемент
-        return combined[Math.floor(length / 2)];
-    }
 };
 
 console.log(findMedianSortedArrays(nums1, nums2))

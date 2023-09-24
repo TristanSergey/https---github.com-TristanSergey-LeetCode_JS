@@ -10,9 +10,50 @@
 // 1048
 
 words = ["a", "b", "ba", "bca", "bda", "bdca"] // 4
-words = ["a", "b", "ba", "abc", "abd", "bdca"] // 2
+//words = ["a", "b", "ba", "abc", "abd", "bdca"] // 2
+//words = ["hello"] // 2
+
 
 var longestStrChain = function (words) {
+
+
+    function compare(wordA, wordB) {
+        if (wordA.length + 1 !== wordB.length) {
+            return false;
+        }
+
+        let i = 0;
+        let j = 0;
+        let count = 0;
+
+        while (i < wordA.length && j < wordB.length) {
+            if (wordA[i] === wordB[j]) {
+                i++;
+            } else {
+                count++;
+                if (count > 1) {
+                    return false;
+                }
+            }
+            j++;
+        }
+
+        return true;
+    }
+
+    words.sort((a, b) => a.length - b.length);
+    const dp = new Array(words.length).fill(1);
+
+    for (let i = 1; i < words.length; i++) {
+        for (let j = 0; j < i; j++) {
+            if (compare(words[j], words[i])) {
+                dp[i] = Math.max(dp[i], dp[j] + 1);
+            }
+        }
+    }
+
+    return Math.max(...dp);
+
 
 };
 
