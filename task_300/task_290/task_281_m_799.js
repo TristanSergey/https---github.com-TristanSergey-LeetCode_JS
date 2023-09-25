@@ -20,9 +20,35 @@
 // 799
 
 poured = 1, query_row = 1, query_glass = 1
-poured = 2, query_row = 1, query_glass = 1
+//poured = 2, query_row = 1, query_glass = 1
+//poured = 100000009, query_row = 33, query_glass = 17
+poured = 1000000000, query_row = 99, query_glass = 99 //0
+poured = 200, query_row = 61, query_glass = 17
 
 var champagneTower = function (poured, query_row, query_glass) {
+
+    // Создаем двумерный массив для представления бокалов
+    //const pyramid = new Array.from({ length: 101 })(() => array(101).fill(0));
+    const pyramid = Array.from({ length: 101 }, () => Array(101).fill(0));
+    //const dp = Array.from({ length:  }).fill();
+    // Начинаем с первого бокала в первом ряду
+    pyramid[0][0] = poured;
+    //if (query_glass > 50) query_glass = Math.floor(query_glass / 2) + 1
+    //if (query_row > 50) query_row = Math.floor(query_row / 2) + 1
+    // Заполняем бокалы согласно правилам
+    for (let i = 0; i < 100; i++) {
+        for (let j = 0; j <= i; j++) {
+            const leaked = (pyramid[i][j] - 1) / 2; // Излишек, который уходит влево и вправо
+            if (leaked > 0) {
+                pyramid[i + 1][j] += leaked;
+                pyramid[i + 1][j + 1] += leaked;
+            }
+        }
+    }
+
+    // Возвращаем значение j-го бокала в i-й строке
+    return Math.min(1, pyramid[query_row][query_glass]);
+
 
 };
 
