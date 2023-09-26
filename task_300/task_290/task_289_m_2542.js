@@ -13,25 +13,34 @@ nums1 = [1, 3, 3, 2], nums2 = [2, 1, 3, 4], k = 3
 //nums1 = [4, 2, 3, 1, 1], nums2 = [7, 5, 10, 9, 6], k = 1
 //nums1 = [2, 1, 14, 12], nums2 = [11, 7, 13, 6], k = 3
 var maxScore = function (nums1, nums2, k) {
-    const n = nums1.length;
-    let maxScore = 0;
+    let length = nums1.length;
+    let arr = [];
+    for (let i = 0; i < length; i++) {
+        arr[i] = [nums2[i], nums1[i]];
+    }
+    arr.sort((a, b) => b[0] - a[0]);
 
-    for (let i = 0; i <= k; i++) {
-        if (i <= n && k - i <= nums2.length) {
-            const subsequence1 = nums1.slice(0, i);
-            const subsequence2 = nums2.slice(0, k - i);
-            console.log(subsequence1)
-            console.log(subsequence2)
-            const sum1 = subsequence1.reduce((acc, val) => acc + val, 0);
-            const min2 = Math.min(...subsequence2);
-            console.log(sum1)
-            console.log(min2)
-            const score = sum1 * min2;
-            maxScore = Math.max(maxScore, score);
+
+    let sum = 0;
+    let answer = 0;
+    let priorityQueue = new MinPriorityQueue();
+
+    for (let i = 0; i < k - 1; i++) {
+        priorityQueue.enqueue(arr[i][1]);
+        sum += arr[i][1];
+    }
+
+    for (let i = k - 1; i < length; i++) {
+        sum += arr[i][1];
+        priorityQueue.enqueue(arr[i][1]);
+        answer = Math.max(answer, sum * arr[i][0]);
+
+        if (!priorityQueue.isEmpty()) {
+            sum -= priorityQueue.dequeue().element;
         }
     }
 
-    return maxScore;
+    return answer;
 
 };
 

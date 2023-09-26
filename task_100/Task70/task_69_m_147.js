@@ -1,6 +1,6 @@
 ﻿// Учитывая заголовок односвязного списка, отсортируйте список, 
 // используя сортировку вставками, и верните заголовок отсортированного списка.
-//140
+//147
 
 let head = new ListNode(1, new ListNode(3, new ListNode(5, new ListNode(2, new ListNode(4, new ListNode(6))))));
 //let head = new ListNode(5, new ListNode(2, new ListNode(10, new ListNode(7, new ListNode(1, new ListNode(8, new ListNode(3, new ListNode(6, new ListNode(4, new ListNode(9))))))))));
@@ -60,15 +60,13 @@ console.log(insertionSortList(head));
 
 
 
-        // const newNode = new ListNode(sourceNode.val);
-        // newNode.next = this.head;
-        // this.head = newNode;
+// const newNode = new ListNode(sourceNode.val);
+// newNode.next = this.head;
+// this.head = newNode;
 
-        // const newNode = new ListNode(sourceNode.val);
-        // newNode.next = sortedList.head;
-        // sortedList.head = newNode;
-
-
+// const newNode = new ListNode(sourceNode.val);
+// newNode.next = sortedList.head;
+// sortedList.head = newNode;
 
 
 
@@ -82,37 +80,39 @@ console.log(insertionSortList(head));
 
 
 
-         // while (current !== null) {
-
-    //     const newNode = new ListNode(current.val);
-    //     console.log('current.val')
-    //     console.log(current.val)
-    //     console.log('currentSortedNode.val')
-    //     console.log(currentSortedNode.val)
 
 
-    //     if (current.val >= currentSortedNode.val) {
-    //         console.log('+++++++++++++')
-    //         console.log('newNode.val')
-    //         console.log(newNode.val)
-    //         currentSortedNode.next = newNode;
-    //         currentSortedNode = newNode;
+// while (current !== null) {
 
-    //     } else {
-    //         console.log('--------------')
-    //         newNode.next = currentSortedNode;
-    //         //currentSortedNode = newNode;
+//     const newNode = new ListNode(current.val);
+//     console.log('current.val')
+//     console.log(current.val)
+//     console.log('currentSortedNode.val')
+//     console.log(currentSortedNode.val)
 
 
+//     if (current.val >= currentSortedNode.val) {
+//         console.log('+++++++++++++')
+//         console.log('newNode.val')
+//         console.log(newNode.val)
+//         currentSortedNode.next = newNode;
+//         currentSortedNode = newNode;
 
-    //     }
-    //     temp = newNode.val
-    //     current = current.next;
+//     } else {
+//         console.log('--------------')
+//         newNode.next = currentSortedNode;
+//         //currentSortedNode = newNode;
 
 
 
-    //     //sourceNode = sourceNode.next;
-    // }
+//     }
+//     temp = newNode.val
+//     current = current.next;
+
+
+
+//     //sourceNode = sourceNode.next;
+// }
 
 
 
