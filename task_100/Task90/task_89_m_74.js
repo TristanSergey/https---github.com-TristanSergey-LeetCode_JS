@@ -17,14 +17,13 @@ matrix = [[1]]
 let target = 1;
 function searchMatrix(matrix, target) {
     function minItem(arr, number) {
-        end = arr.length - 1;
-        start = 0;
-        while (start < end) {
-            let middle = (start + end) >> 1;
-            console.log(arr[middle]);
+        let start = 0;
+        let end = arr.length - 1;
+        while (start <= end) {
+            let middle = Math.floor((start + end) / 2);
             if (arr[middle] === number) {
                 return true;
-            } else if (arr[middle] <= number) {
+            } else if (arr[middle] < number) {
                 start = middle + 1;
             } else {
                 end = middle - 1;
@@ -32,10 +31,15 @@ function searchMatrix(matrix, target) {
         }
         return false;
     }
+
+    if (matrix.length === 0 || matrix[0].length === 0) {
+        return false;
+    }
+
     let start = 0;
     let end = matrix.length - 1;
-    while (start < end) {
-        let middle = (start + end) >> 1;
+    while (start <= end) {
+        let middle = Math.floor((start + end) / 2);
         const firstElement = matrix[middle][0];
         const lastElement = matrix[middle][matrix[middle].length - 1];
         if (firstElement <= target && target <= lastElement) {
@@ -46,7 +50,7 @@ function searchMatrix(matrix, target) {
             start = middle + 1;
         }
     }
-    return minItem(matrix[start], target);
+    return false;
 }
 console.log(searchMatrix(matrix, target));
 
